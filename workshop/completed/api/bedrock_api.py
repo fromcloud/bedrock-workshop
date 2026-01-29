@@ -7,7 +7,7 @@ bedrock = session.client(service_name='bedrock-runtime') #creates a Bedrock clie
 
 bedrock_model_id = "us.amazon.nova-lite-v1:0" #set the foundation model
 
-prompt = "What is the largest city in New Hampshire?" #the prompt to send to the model
+prompt = "뉴햄프셔에서 가장 큰 도시는 어디인가요?" #the prompt to send to the model
 
 messages = [
     {

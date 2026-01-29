@@ -53,7 +53,7 @@ image_message = {
                 }
             }
         },
-        { "text": "이미지에 대해 설명해주세요" }
+        { "text": "Please describe the image." }
     ],
 }
 
@@ -69,7 +69,7 @@ response = bedrock.converse(
 )
 
 response_message = response['output']['message']
-print(json.dumps(response_message, ensure_ascii=False, indent=4))
+print(json.dumps(response_message, indent=4))
 
 message_list.append(response_message)
 
@@ -80,7 +80,7 @@ print("\n----Setting a system prompt----\n")
 summary_message = {
     "role": "user",
     "content": [
-        { "text": "현재까지 나눈 대화에 대해 요약해줄 수 있나요?" } 
+        { "text": "Can you please summarize our conversation so far?" } 
     ],
 }
 
@@ -90,7 +90,7 @@ response = bedrock.converse(
     modelId="us.anthropic.claude-3-7-sonnet-20250219-v1:0",
     messages=message_list,
     system=[
-        { "text": "해적 스타일로 모든 요청에 대해 답변해주세요." }
+        { "text": "Please respond to all requests in the style of a pirate." }
     ],
     inferenceConfig={
         "maxTokens": 2000,
@@ -99,7 +99,7 @@ response = bedrock.converse(
 )
 
 response_message = response['output']['message']
-print(json.dumps(response_message, ensure_ascii=False, indent=4))
+print(json.dumps(response_message, indent=4))
 
 message_list.append(response_message)
 
