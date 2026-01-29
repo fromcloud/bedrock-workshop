@@ -1,6 +1,6 @@
 import boto3, json
 
-print("\n----A basic call to the Converse API----\n")
+print("\n----Converse API 를 이용한 기본적인 모델 호출----\n")
 
 session = boto3.Session()
 bedrock = session.client(service_name='bedrock-runtime')
@@ -30,13 +30,13 @@ response_message = response['output']['message']
 print(json.dumps(response_message, ensure_ascii=False, indent=4))
 
 #
-print("\n----Alternating user and assistant messages----\n")
+print("\n----사용자 메시지와 어시스턴트 메시지를 번갈아 표시합니다.----\n")
 
 message_list.append(response_message)
 print(json.dumps(message_list, ensure_ascii=False, indent=4))
 
 #
-print("\n----Including an image in a message----\n")
+print("\n----요청 메시지에 이미지 포함시켜 요청해 봅니다----\n")
 
 with open("image.webp", "rb") as image_file:
     image_bytes = image_file.read()
@@ -75,7 +75,7 @@ message_list.append(response_message)
 
 
 #
-print("\n----Setting a system prompt----\n")
+print("\n----시스템 프롬프트 메시지 설정----\n")
 
 summary_message = {
     "role": "user",
@@ -90,7 +90,9 @@ response = bedrock.converse(
     modelId="us.anthropic.claude-3-7-sonnet-20250219-v1:0",
     messages=message_list,
     system=[
-        { "text": "해적 스타일로 모든 요청에 대해 답변해주세요." }
+        { 
+            "text": "해적 스타일로 모든 요청에 대해 답변해주세요.",
+        }
     ],
     inferenceConfig={
         "maxTokens": 2000,
@@ -104,7 +106,7 @@ print(json.dumps(response_message, ensure_ascii=False, indent=4))
 message_list.append(response_message)
 
 #
-print("\n----Getting response metadata and token counts----\n")
+print("\n----응답의 메타 데이터와 사용된 토큰 수 정보 얻기----\n")
 
 print("Stop Reason:", response['stopReason'])
 print("Usage:", json.dumps(response['usage'], indent=4))
