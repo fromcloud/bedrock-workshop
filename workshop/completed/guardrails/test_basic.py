@@ -44,7 +44,8 @@ def invoke_nova_lite_with_guardrails(prompt, guardrail_id, guardrail_version, re
         return None
 
 prompt = glib.get_prompt_from_command_line()
-guardrail_id = glib.get_guardrail_id('content_blocking_guardrail_id')
+# guardrail_id = glib.get_guardrail_id('content_blocking_guardrail_id')
+guardrail_id = '0kfzopdb102o'
 guardrail_version="DRAFT"
 
 answer = invoke_nova_lite_with_guardrails(prompt, guardrail_id, guardrail_version)

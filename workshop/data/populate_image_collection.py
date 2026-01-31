@@ -4,7 +4,7 @@ import chromadb
 #startup script to populate vector db
 
 def get_multimodal_embeddings_collection(collection_name):
-    client = chromadb.PersistentClient()
+    client = chromadb.PersistentClient(path="/environment/workshop/data")  # 경로 추가
     index = client.get_or_create_collection(collection_name)
     
     return index
@@ -36,6 +36,4 @@ def initialize_collection(collection_name, source_json_file):
 
 
 
-initialize_collection('images_collection', 'images_with_embeddings.json')
-
-
+initialize_collection('image_collection', 'images_with_embeddings.json')
