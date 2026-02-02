@@ -6,7 +6,7 @@ from chromadb.utils.embedding_functions import AmazonBedrockEmbeddingFunction
 
 def get_text_embeddings_collection(collection_name):
     session = boto3.Session()
-    embedding_function = AmazonBedrockEmbeddingFunction(session=session, model_name="amazon.titan-embed-text-v2:0")
+    embedding_function = AmazonBedrockEmbeddingFunction(session=session, region_name='us-west-2', model_name="amazon.titan-embed-text-v2:0")
     
     client = chromadb.PersistentClient()
     index = client.get_or_create_collection(collection_name, embedding_function=embedding_function)

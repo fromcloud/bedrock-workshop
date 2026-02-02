@@ -8,15 +8,15 @@ st.title("Image Understanding")
 col1, col2, col3 = st.columns(3)
 
 prompt_options_dict = {
-    "Image caption": "Please provide a brief caption for this image.",
-    "Detailed description": "Please provide a thoroughly detailed description of this image.",
-    "Image classification": "Please categorize this image into one of the following categories: People, Food, Other. Only return the category name.",
-    "Object recognition": "Please create a comma-separated list of the items found in this image. Only return the list of items.",
-    "Subject identification": "Please name the primary object in the image. Only return the name of the object in <object> tags.",
-    "Writing a story": "Please write a fictional short story based on this image.",
-    "Answering questions": "What emotion are the people in this image displaying?",
-    "Transcribing text": "Please transcribe any text found in this image.",
-    "Translating text": "Please translate the text in this image to French.",
+    "Image caption": "이 이미지에 대한 간단한 설명을 한글로 제공해 주세요.",
+    "Detailed description": "이 이미지에 대해 매우 자세한 설명을  한글로 제공해 주십시오..",
+    "Image classification": "이 이미지를 다음 카테고리 중 하나로 분류해 주세요: 사람, 음식, 기타. 카테고리 이름만 반환해 주세요.",
+    "Object recognition": "이 이미지에 있는 항목들을 쉼표로 구분된 목록으로 만들어 주세요. 항목 목록만 반환해 주세요.  한글로 처리해주세요.",
+    "Subject identification": "이미지에서 가장 중요한 객체의 이름을 알려주세요. 객체의 이름은 <object> 태그 안에만 넣어서 입력해 주세요.",
+    "Writing a story": "이 이미지를 바탕으로 허구적인 단편 소설을  한글로 써 주세요.",
+    "Answering questions": "이 사진 속 사람들은 어떤 감정을 표현하고 있나요?  한글로 설명해주세요",
+    "Transcribing text": "이 이미지에 있는 텍스트를 모두 옮겨 적어주세요.",
+    "Translating text": "이 이미지의 텍스트를 프랑스어로 번역해 주세요.",
     "Other": "",
 }
 

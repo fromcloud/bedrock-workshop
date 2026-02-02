@@ -11,7 +11,7 @@ def get_multimodal_vector(input_image_base64=None, input_text=None):
     
     session = boto3.Session()
 
-    bedrock = session.client(service_name='bedrock-runtime') #creates a Bedrock client
+    bedrock = session.client(service_name='bedrock-runtime', region_name='us-west-2') #creates a Bedrock client
     
     request_body = {}
     

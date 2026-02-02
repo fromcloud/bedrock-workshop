@@ -1,22 +1,22 @@
 import boto3, json, math
 
-print("\n----Defining a tool and sending a message that will make Claude ask for tool use----\n")
+print("\n---- 1) tool 정의 및 Claude 가 tool 사용에 대해 요청하도록 메시지 보내기----\n")
 
 session = boto3.Session()
-bedrock = session.client(service_name='bedrock-runtime')
+bedrock = session.client(service_name='bedrock-runtime', region_name='us-west-2')
 
 tool_list = [
     {
         "toolSpec": {
             "name": "cosine",
-            "description": "Calculate the cosine of x.",
+            "description": "X 의 코사인값을 계산합니다.",
             "inputSchema": {
                 "json": {
                     "type": "object",
                     "properties": {
                         "x": {
                             "type": "number",
-                            "description": "The number to pass to the function."
+                            "description": "함수에 전달한 수"
                         }
                     },
                     "required": ["x"]
@@ -31,7 +31,7 @@ message_list = []
 initial_message = {
     "role": "user",
     "content": [
-        { "text": "What is the cosine of 7?" } 
+        { "text": "7의 코사인 값은 얼마인가요?" } 
     ],
 }
 
@@ -47,15 +47,15 @@ response = bedrock.converse(
     toolConfig={
         "tools": tool_list
     },
-    system=[{"text":"You must only do math by using a tool."}]
+    system=[{"text":"당신은 tool 을 사용해서 수학계산을 해야합니다."}]
 )
 
 response_message = response['output']['message']
-print(json.dumps(response_message, indent=4))
+print(json.dumps(response_message, ensure_ascii=False, indent=4))
 message_list.append(response_message)
 
 
-print("\n----Calling a function based on the toolUse content block.----\n")
+# print("\n----toolUse 컨텐츠 블록 기반 함수 호출----\n")
 
 response_content_blocks = response_message['content']
 
@@ -74,7 +74,7 @@ for content_block in response_content_blocks:
         print(content_block['text'])
 
 
-print("\n----Passing the tool result back to Claude----\n")
+print("\n---- 2) tool 의 결과를 Claude 모델에게 전달----\n")
 
 follow_up_content_blocks = []
 
@@ -119,16 +119,16 @@ if len(follow_up_content_blocks) > 0:
         toolConfig={
             "tools": tool_list
         },
-        system=[{"text":"You must only do math by using a tool."}]
+        system=[{"text":"당신은 tool 을 사용해서 수학계산을 해야합니다."}]
     )
     
     response_message = response['output']['message']
     
     message_list.append(response_message)
-    print(json.dumps(message_list, indent=4))
+    print(json.dumps(message_list, ensure_ascii=False, indent=4))
 
 
-print("\n----Error handling - letting Claude know that tool use failed----\n")
+print("\n---- 참고) Error handling - tool 사용 실패에 대해 Claude 에게 알리기----\n")
 
 del message_list[-2:] #Remove the last request and response messages
 
@@ -166,10 +166,10 @@ if content_block:
         toolConfig={
             "tools": tool_list
         },
-        system=[{"text":"You must only do math by using a tool."}]
+        system=[{"text":"당신은 tool 을 사용해서 수학계산을 해야합니다."}]
     )
     
     response_message = response['output']['message']
-    print(json.dumps(response_message, indent=4))
+    print(json.dumps(response_message, ensure_ascii=False,  indent=4))
     message_list.append(response_message)
 

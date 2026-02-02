@@ -7,7 +7,7 @@ def chunk_handler(chunk):
 def get_streaming_response(prompt, streaming_callback):
     
     session = boto3.Session()
-    bedrock = session.client(service_name='bedrock-runtime')
+    bedrock = session.client(service_name='bedrock-runtime', region_name='us-west-2')
     
     message = {
         "role": "user",
@@ -29,7 +29,7 @@ def get_streaming_response(prompt, streaming_callback):
             streaming_callback(event['contentBlockDelta']['delta']['text'])
 
 
-prompt = "Tell me a story about two puppies and two kittens who became best friends:"
+prompt = "강아지 두 마리와 고양이 두 마리가 절친한 친구가 된 이야기를 들려주세요.:"
                 
 get_streaming_response(prompt, chunk_handler)
 print("\n")

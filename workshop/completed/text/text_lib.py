@@ -3,7 +3,7 @@ import boto3
 def get_text_response(input_content):
 
     session = boto3.Session()
-    bedrock = session.client(service_name='bedrock-runtime')
+    bedrock = session.client(service_name='bedrock-runtime', region_name='us-west-2')
     
     message = {
         "role": "user",

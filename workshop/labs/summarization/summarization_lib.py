@@ -14,7 +14,7 @@ def get_summary(input_text):
                     "name": "Document 1",
                     "format": "pdf",
                     "source": {
-                        "bytes": doc_bytes #Look Ma, no base64 encoding!
+                        "bytes": doc_bytes
                     }
                 }
             },
@@ -23,7 +23,7 @@ def get_summary(input_text):
     }
     
     session = boto3.Session()
-    bedrock = session.client(service_name='bedrock-runtime')
+    bedrock = session.client(service_name='bedrock-runtime', region_name='us-west-2')
     
     response = bedrock.converse(
         modelId="us.anthropic.claude-3-7-sonnet-20250219-v1:0",

@@ -3,7 +3,7 @@ import boto3, json
 print("\n----Converse API 를 이용한 기본적인 모델 호출----\n")
 
 session = boto3.Session()
-bedrock = session.client(service_name='bedrock-runtime')
+bedrock = session.client(service_name='bedrock-runtime', region_name='us-west-2')
 
 message_list = []
 

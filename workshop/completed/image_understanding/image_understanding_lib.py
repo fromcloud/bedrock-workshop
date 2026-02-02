@@ -18,7 +18,7 @@ def get_bytes_from_file(file_path):
 def get_response_from_model(prompt_content, image_bytes, mask_prompt=None):
     session = boto3.Session()
     
-    bedrock = session.client(service_name='bedrock-runtime') #creates a Bedrock client
+    bedrock = session.client(service_name='bedrock-runtime', region_name='us-west-2') #creates a Bedrock client
     
     image_message = {
         "role": "user",

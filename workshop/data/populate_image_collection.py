@@ -4,7 +4,7 @@ import chromadb
 #startup script to populate vector db
 
 def get_multimodal_embeddings_collection(collection_name):
-    client = chromadb.PersistentClient(path="/environment/workshop/data")  # 경로 추가
+    client = chromadb.PersistentClient(path="/home/ec2-user/bedrock-workshop/workshop/data")  # 경로 추가
     index = client.get_or_create_collection(collection_name)
     
     return index
