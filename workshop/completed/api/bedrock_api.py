@@ -3,7 +3,7 @@ import boto3
 
 session = boto3.Session()
 
-bedrock = session.client(service_name='bedrock-runtime') #creates a Bedrock client
+bedrock = session.client(service_name='bedrock-runtime', region_name='us-west-2') #creates a Bedrock client
 
 bedrock_model_id = "us.amazon.nova-lite-v1:0" #set the foundation model
 
